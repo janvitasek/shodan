@@ -1,0 +1,22 @@
+apply plugin: 'java'
+apply plugin: 'groovy'
+
+group = 'com.trioptimum'
+version = '0.1'
+sourceCompatibility = 1.5
+targetCompatibility = 1.5
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile 'org.codehaus.groovy:groovy-all:2.0.5'
+    testCompile 'org.testng:testng:6.7'
+    testCompile 'org.easytesting:fest-assert-core:2.0M8'
+}
+
+jar {
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    exclude 'META-INF/*.RSA', 'META-INF/*.SF','META-INF/*.DSA'
+}
